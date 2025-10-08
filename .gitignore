@@ -1,2 +1,5 @@
 #compiled class files
 *.class
+
+#ideas
+*.idea
