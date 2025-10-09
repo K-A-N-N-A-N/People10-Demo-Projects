@@ -1,5 +1,9 @@
 import java.util.Scanner;
+
 import Services.WalletService;
+import Models.Account;
+import Models.SavingsAcc;
+import Models.CurrentAcc;
 
 public class Main {
     public static void main(String[] args) {
@@ -28,8 +32,77 @@ public class Main {
 
             switch (input) {
                 case "1":
-                    System.out.println("Logging into an existing account...");
-                    // Add logic for logging into an existing account
+                    System.out.print("Enter Account Number: ");
+                    int accNum = Integer.parseInt(sc.next().trim());
+                    System.out.print("Enter Password: ");
+                    String verifyPassword = sc.next().trim();
+                    boolean found = false;
+                    Account loggedInAccount = null;
+
+                    for (Account acc : walletService.getAccounts()) {
+                        if (acc.getAccountNum() == accNum && acc.getPassword().equals(verifyPassword)) {
+                            System.out.println("\nLogin successful! Welcome, " + acc.getName() + ".");
+                            found = true;
+                            loggedInAccount = acc; // Store logged-in account number
+
+                            break;
+                        }
+                    }
+
+                    if (!found) {
+                        System.out.println("Invalid account number or password. Please try again.");
+                        break;
+                    }
+
+                    System.out.println("\t----- Welcome to your account -----");
+                    // If login is successful, show account menu
+                    else {
+                        while (true) {
+                            System.out.println("\t1. View Account Details");
+                            System.out.println("\t2. Deposit Money");
+                            System.out.println("\t3. Withdraw Money");
+                            System.out.println("\t4. View Transaction History");
+                            System.out.println("\t5. Transfer Money");
+                            System.out.println("\t6. Logout");
+                            System.out.print("\tEnter your choice: ");
+                            String choice = sc.next().trim().toLowerCase();
+
+                            if (choice.equals("6")) {
+                                System.out.println("Logging out...");
+                                break; 
+                            }
+
+                            switch (choice) {
+                                case "1":
+                                    System.out.println("Displaying account details...");
+                                    loggedInAccount.displayAccDetails();
+                                    
+                                    break;
+                                case "2":
+                                    System.out.println("Depositing money...");
+                                    // Add logic to deposit money
+                                    break;
+                                case "3":
+                                    System.out.println("Withdrawing money...");
+                                    // Add logic to withdraw money
+                                    break;
+                                case "4":
+                                    System.out.println("Viewing transaction history...");
+                                    // Add logic to view transaction history
+                                    break;
+                                case "5":
+                                    System.out.println("Transferring money...");
+                                    // Add logic to transfer money
+                                    break;
+                                default:
+                                    System.out.println("Invalid choice. Please try again.");
+                            }
+
+                            sc.nextLine(); // Consume the newline character
+                        }
+                        sc.nextLine(); // Consume the newline character
+                    }
+
                     break;
                 case "2":
                     
