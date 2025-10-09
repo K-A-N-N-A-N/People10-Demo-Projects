@@ -31,4 +31,33 @@ public class WalletService {
         return accounts;
     }
 
+
+    public void DepositMoney(Account acc, double amount) {
+        if (amount <= 0) {
+            System.out.println("Deposit amount must be positive.");
+            return;
+        }
+        double newBalance = acc.getBalance() + amount;
+        acc.setBalance(newBalance);
+        System.out.println("Deposit successful!");
+        System.out.println("Deposited: " + amount);
+        System.out.println("New Balance: " + newBalance);
+    }
+
+    public void WithdrawMoney(Account acc, double amount) {
+        if (amount <= 0) {
+            System.out.println("Withdrawal amount must be positive.");
+            return;
+        }
+        if (amount > acc.getBalance()) {
+            System.out.println("Insufficient balance for this withdrawal.");
+            return;
+        }
+        double newBalance = acc.getBalance() - amount;  
+        acc.setBalance(newBalance);
+        System.out.println("Withdrawal successful!");
+        System.out.println("Withdrawn: " + amount);
+        System.out.println("New Balance: " + newBalance);
+    }
+
 }

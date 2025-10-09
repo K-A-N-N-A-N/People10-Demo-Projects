@@ -27,10 +27,14 @@ public abstract class Account{
         return balance;
     }
 
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
+
     public void displayAccDetails(){
-        System.out.println("\nAccount Number : "+accountNum);
-        System.out.println("\nName : "+name);
-        System.out.println("\nBalance : "+balance);
+        System.out.println("Account Number : "+accountNum);
+        System.out.println("Name : "+name);
+        System.out.println("Balance : "+balance);
     }
 
 }

@@ -54,9 +54,9 @@ public class Main {
                         break;
                     }
 
-                    System.out.println("\t----- Welcome to your account -----");
                     // If login is successful, show account menu
                     else {
+                        System.out.println("\t----- Welcome to your account -----");
                         while (true) {
                             System.out.println("\t1. View Account Details");
                             System.out.println("\t2. Deposit Money");
@@ -79,12 +79,18 @@ public class Main {
                                     
                                     break;
                                 case "2":
-                                    System.out.println("Depositing money...");
-                                    // Add logic to deposit money
+                                    System.out.print("Enter the amount to deposit: ");
+                                    double depositAmount = Double.parseDouble(sc.next().trim());
+                                    walletService.DepositMoney(loggedInAccount, depositAmount);
+                                    
+                                    sc.nextLine(); // Consume the newline character
                                     break;
                                 case "3":
-                                    System.out.println("Withdrawing money...");
-                                    // Add logic to withdraw money
+                                    System.out.print("Enter the amount to withdraw: ");
+                                    double withdrawAmount = Double.parseDouble(sc.next().trim());
+                                    walletService.WithdrawMoney(loggedInAccount, withdrawAmount);
+
+                                    sc.nextLine(); // Consume the newline character
                                     break;
                                 case "4":
                                     System.out.println("Viewing transaction history...");
