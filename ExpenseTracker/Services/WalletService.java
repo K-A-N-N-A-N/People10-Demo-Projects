@@ -22,9 +22,7 @@ public class WalletService {
 
         accounts.add(newAccount);
         System.out.println("Account created successfully! Here are the details:");
-        System.out.println("---------------------------------------------------");
         newAccount.displayAccDetails();
-        System.out.println("---------------------------------------------------");
     }
 
     public List <Account> getAccounts() {

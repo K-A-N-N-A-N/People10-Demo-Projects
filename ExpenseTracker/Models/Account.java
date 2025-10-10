@@ -32,9 +32,11 @@ public abstract class Account{
     }
 
     public void displayAccDetails(){
+        System.out.println("\n---------------------------------------------------");
         System.out.println("Account Number : "+accountNum);
         System.out.println("Name : "+name);
         System.out.println("Balance : "+balance);
+        System.out.println("---------------------------------------------------");
     }
 
 }

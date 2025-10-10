@@ -103,11 +103,9 @@ public class Main {
                                 default:
                                     System.out.println("Invalid choice. Please try again.");
                             }
-
-                            sc.nextLine(); // Consume the newline character
                         }
-                        sc.nextLine(); // Consume the newline character
                     }
+                    sc.nextLine(); // Consume the newline character
 
                     break;
                 case "2":
@@ -131,14 +129,33 @@ public class Main {
                     break;
 
                 case "3":
-                    System.out.println("Deleting an account...");
-                    // Add logic for deleting an account
+                    System.out.print("Enter Account Number to Delete : ");
+                    int delAccNum = Integer.parseInt(sc.next().trim());
+                    System.out.print("Enter Password : ");
+                    String delPassword = sc.next().trim();
+                    Account toDelete = null;
+
+                    for (Account acc : walletService.getAccounts()){
+                        if (acc.getAccountNum() == delAccNum && acc.getPassword().equals(delPassword)){
+                            toDelete = acc;
+                            break;
+                        }
+                    }
+                    
+                    if (toDelete != null){
+                        walletService.getAccounts().remove(toDelete);
+                        System.out.println("Account Has been Successfully deleted !");
+                    }
+                    else{
+                        System.out.println("Invalid Account Number or Password, Please try Again !");
+                    }
+
+                    sc.nextLine(); // Consume the next line
                     break;
                 default:
                     System.out.println("Invalid choice. Please try again.");
             }
         }
-
         sc.close(); 
     }
 }
