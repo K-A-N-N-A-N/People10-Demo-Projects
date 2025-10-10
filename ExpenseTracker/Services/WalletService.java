@@ -29,7 +29,6 @@ public class WalletService {
         return accounts;
     }
 
-
     public void DepositMoney(Account acc, double amount) {
         if (amount <= 0) {
             System.out.println("Deposit amount must be positive.");
@@ -56,6 +55,29 @@ public class WalletService {
         System.out.println("Withdrawal successful!");
         System.out.println("Withdrawn: " + amount);
         System.out.println("New Balance: " + newBalance);
+    }
+
+    public void transferMoney(Account sender, Account receiver, double amount) {
+        if (amount <= 0) {
+            System.out.println("Transfer amount must be positive.");
+            return;
+        }
+        if (amount > sender.getBalance()) {
+            System.out.println("Insufficient balance for this transfer.");
+            return;
+        }
+
+        // Deduct from sender
+        double newSenderBalance = sender.getBalance() - amount;
+        sender.setBalance(newSenderBalance);
+
+        // Add to receiver
+        double newReceiverBalance = receiver.getBalance() + amount;
+        receiver.setBalance(newReceiverBalance);
+
+        System.out.println("Transfer successful!");
+        System.out.println("Transferred: " + amount);
+        System.out.println("Your New Balance: " + newSenderBalance);
     }
 
 }

@@ -97,8 +97,38 @@ public class Main {
                                     // Add logic to view transaction history
                                     break;
                                 case "5":
-                                    System.out.println("Transferring money...");
-                                    // Add logic to transfer money
+                                    System.out.print("Enter Receiver's Account Number: ");
+                                    int recvAccNum = Integer.parseInt(sc.next().trim());
+                                    System.out.print("Enter Receiver's Name: ");
+                                    String recvName = sc.next().trim();
+                                    System.out.print("Enter the amount to send: ");
+                                    double sendMoney = Double.parseDouble(sc.next().trim());
+                                    System.out.print("Verify Your Password: ");
+                                    String vPassword = sc.next().trim();
+
+                                    Account recvAcc = null;
+
+                                    if (loggedInAccount.getPassword().equals(vPassword)) {
+                                        System.out.println("Account Password Verified!");
+
+                                        for (Account acc : walletService.getAccounts()) {
+                                            if (acc.getAccountNum() == recvAccNum && acc.getName().equals(recvName) && acc != loggedInAccount) {
+                                                recvAcc = acc;
+                                                break;
+                                            }
+                                        }
+
+                                        if (recvAcc != null) {
+                                            System.out.println("Receiver Account Verified. Sending money...");
+                                            walletService.transferMoney(loggedInAccount, recvAcc, sendMoney);
+                                        } else {
+                                            System.out.println("Invalid Receiver Account Information. Please try again!");
+                                        }
+
+                                    } else {
+                                        System.out.println("Wrong password!");
+                                    }
+
                                     break;
                                 default:
                                     System.out.println("Invalid choice. Please try again.");
