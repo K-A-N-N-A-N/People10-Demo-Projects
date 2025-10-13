@@ -61,13 +61,12 @@ public class Main {
                             System.out.println("\t1. View Account Details");
                             System.out.println("\t2. Deposit Money");
                             System.out.println("\t3. Withdraw Money");
-                            System.out.println("\t4. View Transaction History");
-                            System.out.println("\t5. Transfer Money");
-                            System.out.println("\t6. Logout");
+                            System.out.println("\t4. Transfer Money");
+                            System.out.println("\t5. Logout");
                             System.out.print("\tEnter your choice: ");
                             String choice = sc.next().trim().toLowerCase();
 
-                            if (choice.equals("6")) {
+                            if (choice.equals("5")) {
                                 System.out.println("Logging out...");
                                 break; 
                             }
@@ -92,11 +91,8 @@ public class Main {
 
                                     sc.nextLine(); // Consume the newline character
                                     break;
+                            
                                 case "4":
-                                    System.out.println("Viewing transaction history...");
-                                    // Add logic to view transaction history
-                                    break;
-                                case "5":
                                     System.out.print("Enter Receiver's Account Number: ");
                                     int recvAccNum = Integer.parseInt(sc.next().trim());
                                     System.out.print("Enter Receiver's Name: ");
